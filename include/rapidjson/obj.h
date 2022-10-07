@@ -2396,6 +2396,18 @@ public:
     std::vector<std::string> out(unique_names.begin(), unique_names.end());
     return out;
   }
+  //! \brief Get a map containing each of the element types and thier indexes
+  //! \return Map of the element type and a vector listing all indices of that type
+  std::map<std::string, std::vector<size_t> > element_listing() {
+      std::map<std::string, std::vector<size_t> > mapping;
+      for (size_t i = 0; i < elements.size(); i++){
+          if (mapping.count(elements[i]->code) == 0)
+              mapping[elements[i]->code] = std::vector<size_t>();
+          mapping[elements[i]->code].push_back(i);
+      }
+      return mapping;
+  }
+
   //! \brief Get a mapping of element types in the group and counts of that
   //!   type of element.
   //! \return Map between element type and count.
@@ -2848,6 +2860,16 @@ public:
     }
     return false;
   }
+    bool add_colors(const int* arr, SizeType N) {
+        if (N == 3) {
+            color.is_set = true;
+            color.r = arr[0];
+            color.g = arr[1];
+            color.b = arr[2];
+            return true;
+        }
+        return false;
+    }
 };
 
 //! Object vertex parameter
