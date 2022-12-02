@@ -16,7 +16,8 @@
 #define RAPIDJSON_INTERNAL_META_H_
 
 #include "../rapidjson.h"
-
+#include <limits>
+#include <vector>
 #ifdef __GNUC__
 RAPIDJSON_DIAG_PUSH
 RAPIDJSON_DIAG_OFF(effc++)

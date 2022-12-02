@@ -24,7 +24,8 @@ Doxyfile
 Doxyfile.zh-cn
 DartConfiguration.tcl
 *.nupkg
-
 # Files created by OS
 *.DS_Store
 *~
+.idea/*
+cmake-build-debug

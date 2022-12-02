@@ -71,7 +71,10 @@ endif()
 if(NOT Python3_FOUND)
     message(FATAL_ERROR "Python libraries not found")
 endif()
-
+#include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${Python3_NumPy_INCLUDE_DIRS})
+#message(DIRS   "${Python3_INCLUDE_DIRS}")
 # Set environment variables required for embedding Python
 set(RAPIDJSON_PYTHON_ENV "DATADIR=${CMAKE_SOURCE_DIR}/test;YGG_PYTHON_EXEC=${Python3_EXECUTABLE}")
 
@@ -80,7 +83,7 @@ set(RAPIDJSON_PYTHON_ENV "DATADIR=${CMAKE_SOURCE_DIR}/test;YGG_PYTHON_EXEC=${Pyt
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     set(RAPIDJSON_PYTHON_ENV "${RAPIDJSON_PYTHON_ENV};PYTHONHOME=${Python3_RUNTIME_LIBRARY_DIRS}")
 endif()
-
+add_definitions(-DRAPIDJSON_YGGDRASIL)
 # Generate the metaschema header file
 option(RAPIDJSON_CREATE_METASCHEMA "Re-create the metaschema" OFF)
 option(RAPIDJSON_YGGDRASIL_TESTS "Build tests using the yggdrasil schema" OFF)
